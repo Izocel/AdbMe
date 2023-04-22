@@ -4,21 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Migration .NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Acme/bin/Debug/net5/Acme.dll",
+            "preLaunchTask": "build_migration",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Acme.Migrations/bin/Debug/net6.0/Acme.Migrations.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Acme",
-            "console": "internalConsole",
-            "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart",
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
         },
         {
             // Use IntelliSense to find out which attributes exist for C# debugging

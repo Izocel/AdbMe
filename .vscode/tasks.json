@@ -16,6 +16,18 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "build_migration",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Acme.Migrations/Acme.Migrations.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "publish",
             "command": "dotnet",
             "type": "process",
@@ -38,6 +50,6 @@
                 "${workspaceFolder}/Acme/Acme.csproj"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
     ]
 }

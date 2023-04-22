@@ -6,9 +6,10 @@ namespace Migration
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World! 00000");
-
+            Console.WriteLine("v1.0.0 - Migration Start");
             CreateDeviceCollection.Migrate(args);
+
+            Console.WriteLine("v1.0.0 - Migration Stop");
         }
     }
 }

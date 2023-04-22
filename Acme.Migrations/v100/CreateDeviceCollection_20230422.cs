@@ -7,7 +7,6 @@ namespace Migration.v100
     {
         public static void Migrate(string[] args)
         {
-            Console.WriteLine("Hello World!");
             LiteDatabase Db = new LiteDatabase(@"Acme/Database/Data/Acme.db");
 
             // Get a collection (or create, if doesn't exist)

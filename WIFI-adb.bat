@@ -1,14 +1,17 @@
 @REM Todo: USING CLI-WRAP: https://github.com/Tyrrrz/CliWrap
-@REM adb kill-server
-@REM adb devices -l
 @REM scrcpy --select-usb
 @REM scrcpy --list-displays
 @REM scrcpy --stay-awake (usb-only)
 @REM scrcpy --turn-screen-off
+@REM scrcpy --tcpip=192.168.0.1:5555
+@REM adb shell ip route | awk '{print $9}' <-- GET LOCAL IP
 
+@REM Start server and add authorized devices/protocol to it.
+adb kill-server
 adb tcpip 5555
-adb connect 192.168.0.229:5555
-call START /B "ADB ME" "C:\Program Files\scrcpy-win64-v2.0\scrcpy.exe"
+adb devices -l
 
-@REM #########
-@REM scrcpy --tcpip=192.168.1.1:5555
+@REM for USB
+scrcpy --serial=R5CW10PPKLL
+@REM for TCPIP
+scrcpy --serial=192.168.0.1:5555

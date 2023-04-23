@@ -23,6 +23,8 @@ scrcpy --serial=192.168.0.1:5555
 ## You can call the APi at : api/any... ()
 ## You can check the APi definitions at : url/ui
 
+As part of our [Physical Project Structure](https://docs.servicestack.net/physical-project-structure) convention we recommend maintaining any shared non Request/Response DTOs in the `ServiceModel.Types` namespace.
+
 ### How to call from C-Sharp:
 ![Screenshot 2023-04-23 184516](https://user-images.githubusercontent.com/68454661/233870359-a9918dc5-9cf1-4492-ba71-99909260656d.png)
 

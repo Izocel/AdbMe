@@ -1,5 +1,5 @@
 ﻿using Acme.Models;
-using LiteDB;
+using Database.Dao;
 using ServiceStack;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,32 +33,17 @@ app.UseMvc(routes =>
         template: "{controller=Home}/{action=Index}/{id?}");
 });
 
-// Open database (or create if doesn't exist)
-using(var db = new LiteDatabase(@"MyData.db"))
-{
-    // Get device collection
-    var col = db.GetCollection<Device>("devices");
+var dao = new DeviceDao();
 
-    // Create your new device instance
-    var device = new Device
-    { 
-        Name = "Device 1",
-        LastIp = "192.168.0.228"
-    };
+Device device = new Device("Device 1");
+device.LastIp = "127.0.0.1";
 
-    // Create unique index in Name field
-    col.EnsureIndex(x => x.Name, true);
+device = dao.Write(device);
+device = dao.Write(device);
 
-    // Insert new device document (Id will be auto-incremented)
-    col.Insert(device);
-
-    // Update a document inside a collection
-    // device.Name = "Joana Doe";
-    // col.Update(device);
-
-    // Use LINQ to query documents (with no index)
-    var results = col.Find(x => x.LastIp == "192.168.0.128");
-    Console.WriteLine(results);
-}
+//TODO Find a way to use lambda to query instead or in addition to BSON
+Func<Device, bool> stm = x => x.Name.StartsWith("x");
+var found = dao.Read("$.Name = 'Device 1'");
+var founds = dao.ReadAll();
 
 app.Run();

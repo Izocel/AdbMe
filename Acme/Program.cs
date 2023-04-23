@@ -1,4 +1,5 @@
-﻿using Acme.Models;
+﻿using Acme.CLI;
+using Acme.Models;
 using Database.Dao;
 using ServiceStack;
 
@@ -34,7 +35,6 @@ app.UseMvc(routes =>
 });
 
 var dao = new DeviceDao();
-
 Device device = new Device("Device 1");
 device.LastIp = "127.0.0.1";
 
@@ -45,5 +45,12 @@ device = dao.Write(device);
 Func<Device, bool> stm = x => x.Name.StartsWith("x");
 var found = dao.Read("$.Name = 'Device 1'");
 var founds = dao.ReadAll();
+
+
+var prog = new Srcpy();
+prog.Run();
+
+Thread.Sleep(10000);
+prog.Cancel();
 
 app.Run();

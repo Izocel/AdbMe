@@ -44,21 +44,20 @@ namespace Acme.CLI
             this.isReady = true;
         }
 
-        public async Task Run()
+        public async Task Run(string serial)
         {
             try
             {
-                while (!isReady) ;
+                while (!isReady);
 
                 if (IsRunning)
                 {
-                    //TODO: kill!!
                     return;
                 }
 
                 this.Canceller = new CancellationTokenSource();
                 var cmdListener = Cli.Wrap(ShortName)
-                    .WithArguments("")
+                    .WithArguments(new[] { "-s", serial })
                     .WithWorkingDirectory(Environment.CurrentDirectory)
                     .ListenAsync(Canceller.Token);
 

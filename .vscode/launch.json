@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build_migration",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Acme.Migrations/bin/Debug/net6.0/Acme.Migrations.dll",
+            "program": "${workspaceFolder}/AdbMe.Migrations/bin/Debug/net6.0/AdbMe.Migrations.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
@@ -25,9 +25,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Acme/bin/Debug/net6.0/Acme.dll",
+            "program": "${workspaceFolder}/AdbMe/bin/Debug/net6.0/AdbMe.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Acme",
+            "cwd": "${workspaceFolder}/AdbMe",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

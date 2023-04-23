@@ -27,7 +27,7 @@ services:
       - nginx-proxy
     volumes:
       - certs:/etc/nginx/certs:rw
-      - acme:/etc/acme.sh
+      - adbMe:/etc/adbMe.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     network_mode: bridge
 
@@ -37,4 +37,4 @@ volumes:
   html:
   dhparam:
   certs:
-  acme:
+  adbMe:

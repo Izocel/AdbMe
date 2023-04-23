@@ -9,7 +9,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Acme/Acme.csproj",
+                "${workspaceFolder}/AdbMe/AdbMe.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -21,7 +21,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Acme.Migrations/Acme.Migrations.csproj",
+                "${workspaceFolder}/AdbMe.Migrations/AdbMe.Migrations.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Acme/Acme.csproj",
+                "${workspaceFolder}/AdbMe/AdbMe.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -47,7 +47,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Acme/Acme.csproj"
+                "${workspaceFolder}/AdbMe/AdbMe.csproj"
             ],
             "problemMatcher": "$msCompile"
         },

@@ -6,7 +6,7 @@
 @REM scrcpy --stay-awake (usb-only)
 @REM scrcpy --turn-screen-off
 
-adb tcip 5555
+adb tcpip 5555
 adb connect 192.168.0.229:55555
 call START /B "ADB ME" "C:\Program Files\scrcpy-win64-v2.0\scrcpy.exe"
 

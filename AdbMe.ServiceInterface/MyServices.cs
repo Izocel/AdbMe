@@ -14,5 +14,10 @@ namespace AdbMe.ServiceInterface
         {
             return new HelloResponse { Result = $"Hello, {request.Name}!" };
         }
+
+        public object Any(Hello2 request)
+        {
+            return new HelloResponse2 { Result = $"Hello, {request.Name}!" };
+        }
     }
 }

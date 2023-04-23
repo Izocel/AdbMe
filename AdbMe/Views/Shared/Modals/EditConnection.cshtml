@@ -1,0 +1,99 @@
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#newConnection">
+  Add New Device <i class="fa-solid fa-plug-circle-bolt"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newConnection" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">New Connection</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="connection_name">Connection Name:</label>
+            <input id="connection_name" name="connection_name" type="text" class="form-control"
+              aria-describedby="connection_nameHelpBlock" required="required">
+            <span id="connection_nameHelpBlock" class="form-text text-muted">Name must be unique</span>
+          </div>
+          <div class="form-group">
+            <label for="connection_device">Device:</label>
+            <div>
+              <select id="connection_device" name="connection_device" class="custom-select"
+                aria-describedby="connection_deviceHelpBlock">
+                <option value="0">D1</option>
+                <option value="1">D2</option>
+                <option value="2">D3</option>
+              </select>
+              <span id="connection_deviceHelpBlock" class="form-text text-muted">Select an already connected
+                device</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input name="connection_mode" id="connection_mode_0" type="radio" class="custom-control-input"
+                  value="true" required="required">
+                <label for="connection_mode_0" class="custom-control-label">Automatic</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input checked name="connection_mode" id="connection_mode_1" type="radio" class="custom-control-input"
+                  value="false" required="required">
+                <label for="connection_mode_1" class="custom-control-label">Manual</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="connection_method">Method:</label>
+            <div>
+              <select id="connection_method" name="connection_method" class="custom-select" required="required"
+                aria-describedby="connection_methodHelpBlock">
+                <option value="CABLE">Cable (usb)</option>
+                <option value="TCPIP">TCP/IP (wifi)</option>
+                <option value="SHELL">TCP/IP (shell)</option>
+              </select>
+              <span id="connection_methodHelpBlock" class="form-text text-muted">The connection method</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Options:</label>
+            <div>
+              <div class="custom-controls-stacked">
+                <div class="custom-control custom-checkbox">
+                  <input name="connection_options" id="connection_options_0" type="checkbox"
+                    class="custom-control-input" value="ALWAYS_TOP">
+                  <label for="connection_options_0" class="custom-control-label">Always on top</label>
+                </div>
+              </div>
+              <div class="custom-controls-stacked">
+                <div class="custom-control custom-checkbox">
+                  <input name="connection_options" id="connection_options_1" type="checkbox"
+                    class="custom-control-input" value="STAY_AWAKE">
+                  <label for="connection_options_1" class="custom-control-label">Stay awake (usb-only)</label>
+                </div>
+              </div>
+              <div class="custom-controls-stacked">
+                <div class="custom-control custom-checkbox">
+                  <input name="connection_options" id="connection_options_2" type="checkbox"
+                    class="custom-control-input" value="SCREEN_OFF">
+                  <label for="connection_options_2" class="custom-control-label">Turn screen off</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button name="submit" type="submit" class="btn btn-primary">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

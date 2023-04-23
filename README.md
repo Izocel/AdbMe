@@ -1,21 +1,3 @@
-# mvc
-
-.NET 6.0 MVC Website with ServiceStack APIs
-
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvc.png)](http://mvc.web-templates.io/)
-
-> Browse [source code](https://github.com/NetCoreTemplates/mvc), view live demo [mvc.web-templates.io](http://mvc.web-templates.io) and install with [dotnet-new](https://docs.servicestack.net/dotnet-new):
-
-    $ dotnet tool install -g x
-
-    $ x new mvc ProjectName
-
-Alternatively write new project files directly into an empty repository, using the Directory Name as the ProjectName:
-
-    $ git clone https://github.com/<User>/<ProjectName>.git
-    $ cd <ProjectName>
-    $ x new mvc
-
 ## Some Scrcpy notes:
 ```
 @REM Todo: USING CLI-WRAP: https://github.com/Tyrrrz/CliWrap
@@ -41,4 +23,6 @@ scrcpy --serial=192.168.0.1:5555
 ## You can call the APi at : api/any... ()
 ## You can check the APi definitions at : url/ui
 
-### Good to do for API calls:
+### How to call from C-Sharp:
+![Screenshot 2023-04-23 184516](https://user-images.githubusercontent.com/68454661/233870359-a9918dc5-9cf1-4492-ba71-99909260656d.png)
+

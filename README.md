@@ -28,4 +28,5 @@ As part of our [Physical Project Structure](https://docs.servicestack.net/physic
 ### How to call from C-Sharp:
 ![Screenshot 2023-04-23 184516](https://user-images.githubusercontent.com/68454661/233870359-a9918dc5-9cf1-4492-ba71-99909260656d.png)
 
-## Concept Diagram
+## Diagrams
+- [Concept](https://github.com/Izocel/AdbMe/blob/c974509a00cbdf7501b2758fa85f8eded65d827c/Diagrams/AdbMe.drawio.pdf)

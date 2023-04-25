@@ -24,6 +24,10 @@ scrcpy --serial=192.168.0.1:5555
 ```
 
 
+### getIp of a device from local computer:
+windows
+`for /f "tokens=9" %a in ('adb shell ip route') do echo %a`
+
 ## You can call the APi at : api/any... ()
 ## You can check the APi definitions at : url/ui
 

@@ -17,7 +17,7 @@
     </thead>
     <tbody>
 
-@foreach (var item in Model) {
+@foreach (Device item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Serial)
@@ -29,11 +29,16 @@
                 @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Primary">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Primary">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Primary">Delete</a>
+                @using (Html.BeginForm()) {
+                    <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.Serial">
+                    <button formnovalidate name="X-HTTP-Method-Override" value="POST">Launch</button>
+                    <button name="X-HTTP-Method-Override" value="GET">Edit</button>
+                    <button name="X-HTTP-Method-Override" value="GET">Details</button>
+                    <button name="X-HTTP-Method-Override" value="DELETE">Delete</button>
+                }
             </td>
         </tr>
 }
     </tbody>
 </table>
+

@@ -40,13 +40,13 @@ namespace AdbMe.CLI
             return this;
         }
 
-        public async Task Run(string serial)
+        public async Task Run(string? serial)
         {
             try
             {
                 while (!IsReady) ;
 
-                if (IsRunning)
+                if (IsRunning || serial?.Length < 1)
                 {
                     return;
                 }

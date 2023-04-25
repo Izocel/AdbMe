@@ -7,7 +7,7 @@ namespace AdbMe.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(string? serial = "192.168.0.229:5555")
+        public IActionResult Index()
         {
             ViewData["Title"] = "Your Device page";
             ViewData["Message"] = "Devices are loading";
@@ -15,6 +15,17 @@ namespace AdbMe.Controllers
             var model = new DevicesViewModel(new Scrcpy());
             return View("Index", model);
         }
+
+        [HttpPost]
+        public IActionResult Index(string? serial)
+        {
+            ViewData["Title"] = "Your Device page";
+            ViewData["Message"] = "A device is in launch attempt";
+            
+            var model = new DevicesViewModel(new Scrcpy(), serial);
+            return View("Index", model);
+        }
+
 
         public IActionResult About()
         {

@@ -7,9 +7,13 @@ namespace ViewComponents.Devices;
 public class DevicesTable : ViewComponent
 {
 
-    public async Task<IViewComponentResult> InvokeAsync(Scrcpy screanner)
+    public async Task<IViewComponentResult> InvokeAsync(DevicesViewModel model)
     {   
-        await screanner.Init();
+        var screanner = await model.Screanner.Init();
+        if(model.ConnectTo != null) {
+            model.Screanner.Run(model.ConnectTo);
+        }
+        
         return View(GetItems(screanner));
     }
 

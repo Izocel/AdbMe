@@ -11,11 +11,14 @@ namespace AdbMe.Models
         public bool IsScreenerLoaded { get; private set; } = false;
         public bool IsListReady { get; private set; }
 
+        public string? ConnectTo { get; private set; }
+
         public DevicesViewModel() { }
 
-        public DevicesViewModel(Scrcpy screanner)
+        public DevicesViewModel(Scrcpy screanner, string? serial = null)
         {
             this.Screanner = screanner;
+            this.ConnectTo = serial;
         }
     }
 

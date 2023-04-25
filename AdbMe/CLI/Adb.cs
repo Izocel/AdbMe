@@ -7,18 +7,18 @@ using CliWrap.EventStream;
 
 namespace AdbMe.CLI
 {
-    sealed class Adb
+    public sealed class Adb
     {
         private string Version { get; set; }
         private string SdkVersion { get; set; }
         private string InstalledPaths { get; set; }
         private string ShortName { get; set; } = "adb";
-        public Device[] ConnectedDevices { get; set; }
-        public bool isReady { get; private set; }
+        public List<Device> ConnectedDevices { get; set; }
+        public bool IsReady { get; private set; }
 
         public Adb() { }
 
-        public async Task Init(string binPath)
+        public async Task<Adb> Init(string binPath)
         {
             var strings = await GetVersion();
 
@@ -26,7 +26,9 @@ namespace AdbMe.CLI
             this.SdkVersion = strings[1];
             this.InstalledPaths = binPath;
             this.ConnectedDevices = await GetDevices();
-            this.isReady = true;
+
+            this.IsReady = true;
+            return this;
         }
 
         public async Task<string[]> GetVersion()
@@ -57,7 +59,7 @@ namespace AdbMe.CLI
             return stdOut.Split("\r");
         }
 
-        public async Task<Device[]> GetDevices()
+        public async Task<List<Device>> GetDevices()
         {
             var cmd = await Cli.Wrap(ShortName)
                 .WithArguments(new[] { "devices", "-l" })
@@ -67,16 +69,17 @@ namespace AdbMe.CLI
             var stdOut = cmd.StandardOutput;
             var stdErr = cmd.StandardError;
             var exitCode = cmd.ExitCode;
-
-            var strings = stdOut.Split("\r\n")[1].Split("\r\n");
-
-            int count = 0;
-            Device[] list = new Device[strings.Count()];
+            var strings = stdOut.Split("\r\n");
+            
+            List<Device> list = new List<Device>();
             foreach (var s in strings)
             {
+                if(!s.Contains("transport_id")){
+                    continue;
+                } 
                 var id = s.Split(" ")[0].Trim();
                 var obj = new Device(id);
-                list[count++] = obj;
+                list.Add(obj);
             }
 
             return list;

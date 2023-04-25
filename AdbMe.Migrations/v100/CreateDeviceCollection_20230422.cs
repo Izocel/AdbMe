@@ -12,7 +12,7 @@ namespace Migration.v100
             // Get a collection (or create, if doesn't exist)
             ILiteCollection<Device> col = Db.GetCollection<Device>("device");
             col.EnsureIndex(x => x.Primary, true);
-            col.EnsureIndex(x => x.Name, true);
+            col.EnsureIndex(x => x.Serial, true);
 
             // Query the collection
             List<Device> results = col.Query()

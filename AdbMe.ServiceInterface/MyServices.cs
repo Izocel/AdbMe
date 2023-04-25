@@ -12,7 +12,7 @@ namespace AdbMe.ServiceInterface
     {
         public object Any(Hello request)
         {
-            return new HelloResponse { Result = $"Hello, {request.Name}!" };
+            return new HelloResponse { Result = $"Connecting you to: {request.Serial}!" };
         }
 
         public object Any(Hello2 request)

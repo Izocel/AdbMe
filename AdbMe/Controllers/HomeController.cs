@@ -1,14 +1,19 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+using AdbMe.CLI;
 using AdbMe.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AdbMe.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string? serial = "192.168.0.229:5555")
         {
-            return View();
+            ViewData["Title"] = "Your Device page";
+            ViewData["Message"] = "Devices are loading";
+
+            var model = new DevicesViewModel(new Scrcpy());
+            return View("Index", model);
         }
 
         public IActionResult About()
@@ -20,7 +25,7 @@ namespace AdbMe.Controllers
 
         public IActionResult Test()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Your Test page.";
 
             return View();
         }

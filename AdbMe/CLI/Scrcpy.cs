@@ -7,16 +7,15 @@ using CliWrap.EventStream;
 
 namespace AdbMe.CLI
 {
-    sealed class Srcpy
+    public sealed class Scrcpy
     {
-        private Adb AdbCli = new Adb();
         private string Version { get; set; }
         private string Dependencies { get; set; }
         private string InstalledPaths { get; set; }
         private string ShortName { get; set; } = "scrcpy";
-        private Device[] ConnectedDevices { get; set; }
-        private Adb AbbCli { get; set; }
-        public bool isReady { get; private set; }
+        public List<Device> ConnectedDevices { get; set; }
+        public Adb AdbCli { get; set; }
+        public bool IsReady { get; private set; }
         public bool IsRunning { get; private set; }
         public int? LastExitCode { get; private set; }
         public int? ProcessId { get; private set; }
@@ -24,12 +23,9 @@ namespace AdbMe.CLI
         public string LastError { get; private set; }
         public CancellationTokenSource? Canceller { get; private set; }
 
-        public Srcpy()
-        {
-            Init();
-        }
+        public Scrcpy() { }
 
-        public async Task Init()
+        public async Task<Scrcpy> Init()
         {
             var strings = await GetVersion();
             this.Version = strings[0];
@@ -37,18 +33,18 @@ namespace AdbMe.CLI
             this.Dependencies = String.Join("\n", strings).Trim();
             this.InstalledPaths = await GetInstalledPaths();
 
-            this.AbbCli = new Adb();
-            await AdbCli.Init(this.InstalledPaths);
-            this.ConnectedDevices = AdbCli.ConnectedDevices;
+            this.AdbCli = await new Adb().Init(this.InstalledPaths);
+            this.ConnectedDevices = this.AdbCli.ConnectedDevices;
 
-            this.isReady = true;
+            this.IsReady = true;
+            return this;
         }
 
         public async Task Run(string serial)
         {
             try
             {
-                while (!isReady);
+                while (!IsReady) ;
 
                 if (IsRunning)
                 {

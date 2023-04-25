@@ -5,18 +5,17 @@ namespace AdbMe.Models
     public class Device : BaseModel
     {
         public string Primary { get; set; }
-        public string Name { get; set; }
+        public string Serial { get; set; }
         public string? LastIp { get; set; }
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         public Device() { }
 
-        public Device(string name, string? lastIp = null)
+        public Device(string serial, string? lastIp = null)
         {
-            this.Primary = name;
-            this.Name = name;
+            this.Primary = serial;
+            this.Serial = serial;
             this.LastIp = lastIp;
-            this.InitBsonMapper();
         }
 
         public void InitBsonMapper()

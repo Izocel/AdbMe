@@ -1,0 +1,39 @@
+@model List<Device>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Serial
+            </th>
+            <th>
+                LastIp
+            </th>
+            <th>
+                UpdatedAt
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastIp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Primary">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Primary">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

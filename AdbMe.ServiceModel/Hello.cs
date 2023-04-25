@@ -3,10 +3,10 @@ using ServiceStack;
 namespace AdbMe.ServiceModel
 {
     [Route("/api/hello")]
-    [Route("/api/hello/{Name}")]
+    [Route("/api/hello/{Serial}")]
     public class Hello : IReturn<HelloResponse>
     {
-        public string Name { get; set; }
+        public string Serial { get; set; }
     }
 
     public class HelloResponse

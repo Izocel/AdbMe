@@ -1,11 +1,8 @@
-@{
-  ViewData["Title"] = "Home Page";
-}
-
+@model DevicesViewModel
 @await Html.PartialAsync("Components/DeviceActionBar")
 
-@section Scripts {
-  <script>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 
-  </script>
-}
+@await Component.InvokeAsync("DevicesTable", @Model.Screanner)

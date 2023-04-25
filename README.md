@@ -14,8 +14,12 @@ adb tcpip 5555
 adb devices -l
 
 @REM for USB
+scrcpy --select-usb
+or
 scrcpy --serial=R5CW10PPKLL
 @REM for TCPIP
+scrcpy --tcpip
+or
 scrcpy --serial=192.168.0.1:5555
 ```
 

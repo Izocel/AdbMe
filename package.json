@@ -13,8 +13,8 @@
     "app": "app AdbMe/bin/Debug/net6.0/AdbMe.dll",
     "test": "dotnet run --project AdbMe.Test",
     "wtest": "dotnet watch --project AdbMe.Test",
-    "publish": "dotnet publish",
-    "pubRelease": "dotnet publish -c Release"
+    "publish": "dotnet publish && dotnet publish -c Release",
+    "migrate": "dotnet run --project AdbMe.Migrations"
   },
   "author": "Rvd-Projects",
   "repository": "https://github.com/Izocel/AdbMe",

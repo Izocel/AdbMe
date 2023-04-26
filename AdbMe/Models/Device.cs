@@ -8,6 +8,7 @@ namespace AdbMe.Models
         public string Serial { get; set; }
         public string? LastIp { get; set; }
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public bool? TcpAvailable { get; set; }
 
         public Device() { }
 

@@ -17,5 +17,6 @@
     "pubRelease": "dotnet publish -c Release"
   },
   "author": "Rvd-Projects",
+  "repository": "https://github.com/Izocel/AdbMe",
   "license": "ISC"
 }

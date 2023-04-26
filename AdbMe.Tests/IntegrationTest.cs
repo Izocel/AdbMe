@@ -37,7 +37,7 @@ public class IntegrationTest
     {
         var client = CreateClient();
 
-        var response = client.Get(new Hello { Name = "World" });
+        var response = client.Get(new Hello { Serial = "World" });
 
         Assert.That(response.Result, Is.EqualTo("Hello, World!"));
     }

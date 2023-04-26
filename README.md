@@ -23,6 +23,8 @@ or
 scrcpy --serial=192.168.0.1:5555
 ```
 
+## Generate app desktop application
+https://docs.servicestack.net/netcore-windows-desktop
 
 ### getIp of a device from local computer:
 windows

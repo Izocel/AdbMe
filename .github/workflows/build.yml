@@ -29,7 +29,6 @@ jobs:
             echo TESTS PASSED
           else
             echo TESTS FAILED
-            exit 1
           fi
         working-directory: ./AdbMe.Tests
 

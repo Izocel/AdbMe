@@ -15,6 +15,7 @@ namespace AdbMe.CLI
         private string ShortName { get; set; } = "scrcpy";
         public List<Device> ConnectedDevices { get; set; }
         public Adb AdbCli { get; set; }
+        public Nmap NmapCli { get; set; }
         public bool IsReady { get; private set; }
         public bool IsRunning { get; private set; }
         public int? LastExitCode { get; private set; }
@@ -34,6 +35,7 @@ namespace AdbMe.CLI
             this.InstalledPaths = await GetInstalledPaths();
 
             this.AdbCli = await new Adb().Init(this.InstalledPaths);
+            this.NmapCli = await new Nmap().Init(this.InstalledPaths);
             this.ConnectedDevices = this.AdbCli.ConnectedDevices;
 
             this.IsReady = true;

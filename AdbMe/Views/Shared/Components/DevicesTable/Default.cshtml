@@ -1,5 +1,7 @@
-@model List<Device>
+@model List<List<Device>>
 
+
+<h4>Screener enabled devices</h4>
 <table class="table mt-4">
     <thead>
         <tr>
@@ -20,7 +22,7 @@
     </thead>
     <tbody>
 
-@foreach (Device item in Model) {
+@foreach (Device item in Model[0]) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Serial)
@@ -37,10 +39,62 @@
             <td>
                 @using (Html.BeginForm()) {
                     <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.Serial">
-                    <button formnovalidate name="X-HTTP-Method-Override" value="POST">Launch</button>
+                    <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.LastIp">
+                    <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.TcpAvailable">
+                    <button formnovalidate name="X-HTTP-Method-Override" value="POST">
+                        Launch <i class="fa-brands fa-usb"></i>
+                    </button>
+                    <button formnovalidate name="X-HTTP-Method-Override" value="POST">
+                        Launch <i class="fa-solid fa-wifi"></i>
+                    </button>
                     <button name="X-HTTP-Method-Override" value="GET">Edit</button>
                     <button name="X-HTTP-Method-Override" value="GET">Details</button>
                     <button name="X-HTTP-Method-Override" value="DELETE">Delete</button>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h4>Potential devices</h4>
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>
+                Local Ip
+            </th>
+            <th>
+                TcpAvailable
+            </th>
+            <th>
+                UpdatedAt
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (Device item in Model[1]) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastIp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TcpAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @using (Html.BeginForm()) {
+                    <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.Serial">
+                    <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.LastIp">
+                    <input formnovalidate hidden name="serial" id="@item.Serial" value="@item.TcpAvailable">
+                    <button formnovalidate name="X-HTTP-Method-Override" value="POST">
+                        TRY Launch <i class="fa-solid fa-wifi"></i> / <i class="fa-brands fa-usb"></i>
+                    </button>
+                    <button name="X-HTTP-Method-Override" value="GET">Details</button>
                 }
             </td>
         </tr>

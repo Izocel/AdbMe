@@ -18,15 +18,14 @@ namespace AdbMe.CLI
 
         public Adb() { }
 
-        public async Task<Adb> Init(string binPath)
+        public async Task<Adb> Init(string? binPath = null)
         {
             var strings = await GetVersion();
 
             this.Version = strings[0];
             this.SdkVersion = strings[1];
-            this.InstalledPaths = binPath;
+            this.InstalledPaths = binPath ?? await GetInstalledPaths();
             this.ConnectedDevices = await GetDevices();
-            this.ShortName = binPath;
 
             this.IsReady = true;
             return this;
@@ -46,7 +45,7 @@ namespace AdbMe.CLI
             return stdOut.Split("\r\n");
         }
 
-        public async Task<string[]> GetInstalledPaths()
+        public async Task<string> GetInstalledPaths()
         {
             var cmd = await Cli.Wrap("where")
                 .WithArguments(ShortName)
@@ -57,15 +56,15 @@ namespace AdbMe.CLI
             var stdErr = cmd.StandardError;
             var exitCode = cmd.ExitCode;
 
-            return stdOut.Split("\r");
+            return stdOut.Split("\r")[0];
         }
 
         public async Task<bool?> TryAddTcpIp(string? ip = null)
         {
-            if(!Helpers.Helpers.IsIpValid(ip)){ return false;}
+            if (!Helpers.Helpers.IsIpValid(ip)) { return false; }
 
             var cmd = await Cli.Wrap(ShortName)
-                .WithArguments(new [] {"connect", ip})
+                .WithArguments(new[] { "connect", ip })
                 .WithWorkingDirectory(Environment.CurrentDirectory)
                 .ExecuteBufferedAsync();
 
@@ -91,16 +90,31 @@ namespace AdbMe.CLI
             List<Device> list = new List<Device>();
             foreach (var s in strings)
             {
-                if (!s.Contains("transport_id")) {continue;}
+                if (!s.Contains("transport_id")) { continue; }
 
                 var id = s.Split(" ")[0].Trim();
-                if (Helpers.Helpers.IsIpValid(id)) {continue;}
 
                 var obj = new Device(id);
                 obj.LastIp = await GetDeviceIp(id.Trim());
                 obj.TcpAvailable = await TryAddTcpIp(obj.LastIp);
                 list.Add(obj);
             }
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                var item = list[i];
+                if (!item.Serial.Contains(item.LastIp)) { continue; }
+
+                var found = list.Find(x =>
+                {
+                    return x.Serial.Contains(item.LastIp);
+                });
+
+                if (found == null) { continue; }
+
+                list.Remove(item);
+            }
+
 
             return list;
         }

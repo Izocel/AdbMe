@@ -14,11 +14,19 @@ public class DevicesTable : ViewComponent
             model.Screanner.Run(model.ConnectTo);
         }
         
+        foreach (var item in screanner.NmapCli.PotentialDevices)
+        {
+            item.TcpAvailable = await screanner.AdbCli.TryAddTcpIp(item.LastIp);
+        }
+
         return View(GetItems(screanner));
     }
 
-    private List<Device> GetItems(Scrcpy screanner)
+    private List<List<Device>> GetItems(Scrcpy screanner)
     {
-        return screanner.ConnectedDevices;
+        return new List<List<Device>> {
+            screanner.ConnectedDevices,
+            screanner.NmapCli.PotentialDevices
+        };
     }
 }

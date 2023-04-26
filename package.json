@@ -1,0 +1,21 @@
+{
+  "name": "adbme",
+  "version": "1.0.0",
+  "description": "Android device debug application",
+  "scripts": {
+    "dev": "npm run watch",
+    "install": "npm run clean && npm run restore && npm run build",
+    "clean": "dotnet clean",
+    "restore": "dotnet restore",
+    "build": "dotnet build",
+    "web": "dotnet run --project AdbMe",
+    "watch": "dotnet watch --project AdbMe",
+    "app": "app AdbMe/bin/Debug/net6.0/AdbMe.dll",
+    "test": "dotnet run --project AdbMe.Test",
+    "wtest": "dotnet watch --project AdbMe.Test",
+    "publish": "dotnet publish",
+    "pubRelease": "dotnet publish -c Release"
+  },
+  "author": "Rvd-Projects",
+  "license": "ISC"
+}

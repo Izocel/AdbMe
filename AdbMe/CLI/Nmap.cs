@@ -15,8 +15,13 @@ namespace AdbMe.CLI
         private string ShortName { get; set; } = "nmap";
         public List<Device> PotentialDevices { get; set; }
         public bool IsReady { get; private set; }
+        public string ScannerIp { get; private set; }
+        public string DefaultScannerIp { get; private set; }
 
-        public Nmap() { }
+        public Nmap() { 
+            this.ScannerIp = "192.168.0.1/24";
+            this.DefaultScannerIp = this.ScannerIp;
+        }
 
         public async Task<Nmap> Init(string? binPath = null)
         {
@@ -59,7 +64,7 @@ namespace AdbMe.CLI
         public async Task<List<Device>> GetDevices()
         {
             var cmd = await Cli.Wrap(ShortName)
-                .WithArguments(new[] { "-sn", "192.168.0.1/24" })
+                .WithArguments(new[] { "-sn", ScannerIp })
                 .WithWorkingDirectory(Environment.CurrentDirectory)
                 .ExecuteBufferedAsync();
 

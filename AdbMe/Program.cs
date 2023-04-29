@@ -1,6 +1,8 @@
 ﻿using ServiceStack;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: false);
+
 
 #if DEBUG
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false).AddRazorRuntimeCompilation();
@@ -24,8 +26,6 @@ else
 {
     app.UseDeveloperExceptionPage();
 }
-
-
 
 app.UseServiceStack(new AppHost());
 app.UseMvc(routes =>

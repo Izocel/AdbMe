@@ -21,6 +21,7 @@ namespace AdbMe.CLI
             string[] args = GetArgsWithInject(call);
             var cmd = await Cli.Wrap(ShortName)
                 .WithArguments(args, false)
+                .WithWorkingDirectory(Environment.CurrentDirectory)
                 .ExecuteBufferedAsync();
 
             var stdOut = cmd.StandardOutput;

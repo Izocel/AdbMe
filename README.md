@@ -23,6 +23,9 @@ or
 scrcpy --serial=192.168.0.1:5555
 ```
 
+Bower:
+bower.io
+
 ## List device manager type e.g: Usb | Bluetooth
 - win10: Get-PnPDevice | Where-Object -FilterScript { $_.Class -eq 'Bluetooth' -and $_.FriendlyName -like '*' }
 

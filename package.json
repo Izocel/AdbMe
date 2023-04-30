@@ -4,7 +4,7 @@
   "description": "Android device debug application",
   "scripts": {
     "dev": "npm run watch",
-    "install": "npm run clean && npm run restore && npm run build",
+    "postinstall": "npm run clean && npm run restore && cd AdbMe && bower update &&  cd ../ && npm run build",
     "clean": "dotnet clean",
     "restore": "dotnet restore",
     "build": "dotnet build",
@@ -18,5 +18,8 @@
   },
   "author": "Rvd-Projects",
   "repository": "https://github.com/Izocel/AdbMe",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.14"
+  }
 }

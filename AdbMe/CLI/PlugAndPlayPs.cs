@@ -11,7 +11,7 @@ namespace AdbMe.CLI
             GetBluetoothAsync();
         }
 
-        public async Task<string> GetWithTypeAsync(string type = "*" , bool strict = true) {
+        public async Task<string> GetWithTypeAsync(string type = "TYPE" , bool strict = true) {
             var classMod = strict ? "-eq" : "-like";
             type = strict ? type : $"*{type}*";
 

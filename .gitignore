@@ -293,4 +293,4 @@ __pycache__/
 *.xsd.cs
 GPUCache
 .history
-*/Database/Data/*
+*/Database/Data/*.db

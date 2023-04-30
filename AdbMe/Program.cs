@@ -6,8 +6,6 @@ builder.Configuration.AddJsonFile("appsettings.Development.json", optional: fals
 
 
 #if DEBUG
-builder.Services.AddMvc(options => options.EnableEndpointRouting = false).AddRazorRuntimeCompilation();
-#else
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 #endif
 

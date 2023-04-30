@@ -23,6 +23,10 @@ or
 scrcpy --serial=192.168.0.1:5555
 ```
 
+## List device manager type e.g: Usb | Bluetooth
+- win10: Get-PnPDevice | Where-Object -FilterScript { $_.Class -eq 'Bluetooth' -and $_.FriendlyName -like '*' }
+
+
 ## Generate app desktop application
 https://docs.servicestack.net/netcore-windows-desktop
 

@@ -1,4 +1,5 @@
-﻿using ServiceStack;
+﻿using AdbMe.CLI;
+using ServiceStack;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: false);
@@ -34,5 +35,7 @@ app.UseMvc(routes =>
         name: "default",
         template: "{controller=Home}/{action=Index}/{id?}");
 });
+
+new PlugAndPlayPs();
 
 app.Run();

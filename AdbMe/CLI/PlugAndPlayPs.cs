@@ -8,15 +8,19 @@ namespace AdbMe.CLI
     {
         public PlugAndPlayPs() : base("Get-PnPDevice")
         {
-            GetBluetoothAsync();
+            GetUsbAsync("Samsung");
         }
 
-        public async Task<string> GetWithTypeAsync(string type = "TYPE" , bool strict = true) {
-            var classMod = strict ? "-eq" : "-like";
-            type = strict ? type : $"*{type}*";
+        public async Task<string> GetWithFiltersAsync(string type = "TYPE", string name = "*", bool strictName = false, bool strictType = false)
+        {
+            var classMod = strictType ? "-eq" : "-like";
+            type = strictType ? type : $"*{type}*";
 
-            string call = " | Where-Object -FilterScript { $_.Class " +
-                $"{classMod} '{type}' -and $_.FriendlyName -like '*' " + "}";
+            var nameMod = strictName ? "-eq" : "-like";
+            name = strictName ? name : $"*{name}*";
+
+            string call = " -PresentOnly | Where-Object -FilterScript { $_.Class " +
+                $"{classMod} '{type}' -and $_.FriendlyName {nameMod} '{name}' " + "}";
 
             string[] args = GetArgsWithInject(call);
             var cmd = await Cli.Wrap(ShortName)
@@ -31,7 +35,14 @@ namespace AdbMe.CLI
             var lines = stdOut.Split("\n");
             string[] headers = lines[1].Split("  ");
             string[] fields = headers.Where(x => x.Length > 0).ToArray();
-            string[] items = lines.Where(x => x.Contains(type)).ToArray();
+            fields[fields.Count()-1] = fields[fields.Count()-1].Replace(" \r", "");
+            
+            string[] items = lines.Where(x => 
+                !x.StartsWith("\r")
+                && !x.StartsWith("Status")
+                && !x.StartsWith("--")
+                && x.Trim() != ""
+            ).ToArray();
 
             foreach (var item in items)
             {
@@ -41,14 +52,24 @@ namespace AdbMe.CLI
             return stdOut;
         }
 
-        public async Task<string> GetUsbAsync()
+        public async Task<string> GetUsbAsync(string name = "*")
         {
-            return await GetWithTypeAsync("USB");
+            return await GetWithFiltersAsync("USB", name);
         }
 
-        public async Task<string> GetBluetoothAsync()
+        public async Task<string> GetBluetoothAsync(string name = "*")
         {
-            return await GetWithTypeAsync("BLUETOOTH");
+            return await GetWithFiltersAsync("BLUETOOTH", name);
+        }
+
+        public async Task<string> GetModemAsync(string name = "*")
+        {
+            return await GetWithFiltersAsync("MODEM", name);
+        }
+
+        public async Task<string> GetWindowPortablesAsync(string name = "*")
+        {
+            return await GetWithFiltersAsync("WPD", name);
         }
     }
 }
